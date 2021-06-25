@@ -1,4 +1,4 @@
-const resturants = getSavedTodos() 
+let resturants = getSavedTodos() 
 
 const filterNotes = {
     searchText:"",

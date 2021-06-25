@@ -30,4 +30,6 @@ const user = JSON.parse(personJSON)
 console.log(`${person.name} is ${person.age}`)
 
 
-
+document.querySelector('#check').addEventListener('change',function(e){
+    console.log(e.target.checked)
+})
