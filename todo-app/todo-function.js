@@ -25,7 +25,7 @@ const removeNote = function (id) {
     }
 }
 
-// Toggle the completed value for a given todo
+/* // Toggle the completed value for a given todo
 const toggleTodo = function (id) {
     const todo = resturants.find(function (todo) {
         return todo.id === id
@@ -35,7 +35,7 @@ const toggleTodo = function (id) {
         todo.completed = !todo.completed
     }
 }
-
+ */
 //Get the renderTodo 
 const renderFilter = function(resturant,filter){
     let filters = resturant.filter(function(res){
@@ -75,10 +75,10 @@ const generateTodoDOM = function (resturant){
     checkbox.setAttribute('type', 'checkbox')
     checkbox.checked = resturant.completed
     todoEl.appendChild(checkbox) 
-    checkbox.addEventListener('change', function(){
+    /* checkbox.addEventListener('change', function(){
         saveTodos(resturants)
         renderFilter(resturants, filter)
-    })
+    }) */
     
 
     //setup todo text
