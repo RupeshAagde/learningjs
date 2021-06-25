@@ -25,7 +25,7 @@ const removeTodo = function (id) {
     }
 }
 
-// Toggle the completed value for a given todo
+//Toggle the completed value for a given todo
 const toggleTodo = function (id) {
     const todo = todos.find(function (todo) {
         return todo.id === id
