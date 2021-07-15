@@ -1,3 +1,5 @@
+'use strict'
+
 let resturants = getSavedTodos() 
 
 const filterNotes = {
@@ -7,13 +9,13 @@ const filterNotes = {
 
 renderFilter(resturants,filterNotes)
 
-document.querySelector('#search').addEventListener('input',function(e){
+document.querySelector('#search').addEventListener('input',(e) =>{
     filterNotes.searchText = e.target.value
     renderFilter(resturants,filterNotes)
 })
 
  
-document.querySelector('#name-form').addEventListener('submit',function(e){
+document.querySelector('#name-form').addEventListener('submit',(e) =>{
     e.preventDefault()
     resturants.push({
         id: uuidv4(),
@@ -25,7 +27,7 @@ document.querySelector('#name-form').addEventListener('submit',function(e){
     e.target.elements.text.value = '' 
 })
 
-document.querySelector('#check-completed').addEventListener('change', function(e){
+document.querySelector('#check-completed').addEventListener('change',(e) =>{
     filterNotes.hideCompleted = e.target.checked
     renderFilter(resturants,filterNotes)
 })
