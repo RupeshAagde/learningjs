@@ -14,7 +14,6 @@ request.open('GET', `http://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
 request.send()
 })
 
-
 //Country Code 
 const getCountryDetail = (countryCode) => new Promise((resolve,reject) => {
     
