@@ -35,6 +35,7 @@ const toggleTodo = (id) => {
  
 //Get the renderTodo 
 const renderFilter = (resturant,filterNotes) => {
+    const filterAppend = document.querySelector('#notes')
     let filters = resturant.filter((res) =>{
         return res.text.toLowerCase().includes(filterNotes.searchText.toLocaleLowerCase())
     })
@@ -47,21 +48,27 @@ const renderFilter = (resturant,filterNotes) => {
     })
     const incompleted = filters.filter((resturant) =>  !resturant.completed)
 
-    document.querySelector('#notes').innerHTML=""
+    filterAppend.innerHTML=""
+    filterAppend.appendChild(generateSummaryDOM(incompleted))
     
-    
-    document.querySelector('#notes').appendChild(generateSummaryDOM(incompleted))
-    
-    filters.forEach((resturant) =>{
-        
-        document.querySelector('#notes').appendChild(generateTodoDOM(resturant))
-    })
+    if(filters.length > 0){
+        filters.forEach((resturant) =>{
+            filterAppend.appendChild(generateTodoDOM(resturant))
+        })
+    }else {
+        const emptyMessage = document.createElement('p')
+        emptyMessage.classList.add('empty-message')
+        emptyMessage.textContent = 'No todo to show'
+        filterAppend.appendChild(emptyMessage)
+
+    }
     
 }
 
 //get the DOM element from the individual todo
 const generateTodoDOM =(resturant) =>{
-    const todoEl = document.createElement('div')
+    const todoEl = document.createElement('label')
+    const containerEl = document.createElement('div')
     const checkbox = document.createElement('input')
     const todoText = document.createElement('span') 
     const removebutton = document.createElement('button')
@@ -69,7 +76,7 @@ const generateTodoDOM =(resturant) =>{
     // setup todo checkBox
     checkbox.setAttribute('type', 'checkbox')
     checkbox.checked = resturant.completed
-    todoEl.appendChild(checkbox) 
+    containerEl.appendChild(checkbox) 
     checkbox.addEventListener('change',() =>{
         toggleTodo(resturant.id)
         saveTodos(resturants)
@@ -79,10 +86,16 @@ const generateTodoDOM =(resturant) =>{
 
     //setup todo text
     todoText.textContent = resturant.text
-    todoEl.appendChild(todoText)
+    containerEl.appendChild(todoText)
+
+    //setup container
+    todoEl.classList.add('list-item')
+    containerEl.classList.add('list-item__container')
+    todoEl.appendChild(containerEl)
 
     //setup remove button
-    removebutton.textContent = ' X '
+    removebutton.textContent = ' Remove '
+    removebutton.classList.add('button', 'button--text')
     todoEl.appendChild(removebutton)
     removebutton.addEventListener('click',() =>{
         removeNote(resturant.id)
@@ -96,6 +109,8 @@ const generateTodoDOM =(resturant) =>{
 //get the DOM element from list summary
 const generateSummaryDOM = (incompleted) => {
     const addElement = document.createElement('h2')
-    addElement.textContent = `you have ${incompleted.length} todo left`
+    addElement.classList.add('list-title')
+    const plural = incompleted.length === 1 ? '' : 's'
+    addElement.textContent = `You have ${incompleted.length} todo${plural} left`
     return addElement
 }

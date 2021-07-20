@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 
 <html>
-    <head></head>
+    <head>
+        <title>Notes App</title>
+        <link href="/styles/styles.css" rel="stylesheet">
+        <link href="/styles/styles.css" rel="stylesheet">
+    </head>
     <body>
-        <a href="/index.html"> Home </a>
-        <input id="note-title" placeholder="A Title">
-        <span id="last-edited"></span>
-        <textarea id="note-body" placeholder="Some text"></textarea>
-        <button id="remove-note"> Remove All</button>
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">Notes App</h1>
+                <h2 class="header__subtitle">Take notes and never forget</h2>
+            </div>
+        </header>
+
+        <div class="actions">
+            <div class="actions__container actions__container--spaced">
+                <a href="/index.html"> Home </a>
+                <span id="last-edited"></span>
+            </div>
+        </div>
+        
+        <div class="container">
+            <input id="note-title" class="title-input" placeholder="A Title">
+            <textarea id="note-body" class="body-input" placeholder="Some text"></textarea>
+            <button id="remove-note" class="button button--secondary"> Remove All</button>
+        </div>
+        
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
-        <script src ="notes-function.js"></script>
-        <script src = "notes-edit.js"></script>
+        <script src ="/scripts/notes-function.js"></script>
+        <script src = "/scripts/notes-edit.js"></script>
     </body>
 </html>

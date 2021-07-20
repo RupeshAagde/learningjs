@@ -16,15 +16,19 @@ document.querySelector('#search').addEventListener('input',(e) =>{
 
  
 document.querySelector('#name-form').addEventListener('submit',(e) =>{
+const text = e.target.elements.text.value.trim()
+
     e.preventDefault()
-    resturants.push({
+    if(text.length > 0){
+        resturants.push({
         id: uuidv4(),
-        text: e.target.elements.text.value,
+        text,
         completed:false
     })
     saveTodos(resturants)
     renderFilter(resturants,filterNotes)
-    e.target.elements.text.value = '' 
+    e.target.elements.text.value = ''
+    }
 })
 
 document.querySelector('#check-completed').addEventListener('change',(e) =>{
